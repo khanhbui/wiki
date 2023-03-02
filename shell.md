@@ -3,13 +3,13 @@
 ### Local branches
 
 ```sh
-git branch | grep 'xxx' | while read line ; do git branch -D $line; done; 
+git branch | grep 'xxx' | while read line ; do git branch -D $line; done;
 ```
 
 ### Remote branches
 
 ```sh
-git branch | grep 'xxx' | while read line ; do git push origin :$line; done; 
+git branch | grep 'xxx' | while read line ; do git push origin :$line; done;
 ```
 
 ## Deletes all stale tracking branches under \<name\>
@@ -19,4 +19,10 @@ git branch | grep 'xxx' | while read line ; do git push origin :$line; done;
 
 ```sh
 git remote prune origin
+```
+
+## Pull all repositories in a folder
+
+```sh
+for f in *; do echo "=== $f ==="; cd "$f"; git pull && git remote prune origin && git submodule update --init --recursive; cd -; done
 ```
